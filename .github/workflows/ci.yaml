@@ -45,8 +45,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest .
+            -t ${{ secrets.saranasser1198 }}/python-getting-started:latest .
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest
+          docker push ${{ secrets.saranasser1198 }}/python-getting-started:latest
