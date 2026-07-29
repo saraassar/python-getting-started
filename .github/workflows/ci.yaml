@@ -42,12 +42,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-       - name: Build Docker image
-          run: |
-            docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest .
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest .
 
-       - name: Push Docker image
-          run: |
-            docker push ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest    
-
-
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/python-getting-started:latest
