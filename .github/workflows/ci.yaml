@@ -15,7 +15,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.saraassar }}/pythonapp
+  IMAGE_NAME: ghcr.io/saraassar/python-getting-started
 
 jobs:
   test-and-build:
