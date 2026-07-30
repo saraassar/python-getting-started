@@ -70,7 +70,7 @@ if IS_HEROKU_APP:
     # https://docs.djangoproject.com/en/6.0/ref/middleware/#http-strict-transport-security
     SECURE_SSL_REDIRECT = True
 else:
-    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
+    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]", "101.46.69.181"]
 
 
 # Application definition
