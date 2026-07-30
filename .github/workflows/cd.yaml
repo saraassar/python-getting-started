@@ -1,0 +1,51 @@
+name: Python CD
+
+on:
+  workflow_run:
+    workflows:
+      - "Python CI"
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  update-gitops:
+    name: Update GitOps Repository
+
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'test'
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: test
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Update Deployment Info
+        run: |
+          echo "Last deployment: $(date -u +"%Y-%m-%dT%H:%M:%SZ")" > helm-pyhton/deploy-info.txt
+
+      - name: Commit Changes
+        run: |
+          git add helm-pyhton/deploy-info.txt
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update deployment info [skip ci]"
+          fi
+
+      - name: Push Changes
+        run: |
+          git push origin test
