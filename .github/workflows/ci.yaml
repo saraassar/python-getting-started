@@ -48,6 +48,8 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Set Image Tag
         run: |
           echo "IMAGE_TAG=${GITHUB_SHA::7}" >> $GITHUB_ENV    password: ${{ secrets.GITHUB_TOKEN }}
