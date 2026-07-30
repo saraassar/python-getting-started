@@ -1,13 +1,10 @@
 replicaCount: 2
-
 image:
   repository: ghcr.io/saraassar/python-getting-started
-  tag: latest
+  tag: a17db65
   pullPolicy: Always
-
 container:
   port: 8000
-
 service:
   type: NodePort
   port: 80
